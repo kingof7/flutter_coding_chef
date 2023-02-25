@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 // State가 변하는 조건 2가지
 // Child 위젯의 생성자를 통해서 데이터가 전달 될 때
 // Internal state가 바뀔 때
 // 2강 - 1분37초, 6분 47초
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -31,15 +33,29 @@ class _MyAppState extends State<MyApp> {
                 '$counter',
                 style: Theme.of(context).textTheme.displaySmall,
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FloatingActionButton(
+                    child: const Icon(Icons.add),
+                    onPressed: () {
+                      setState(() {
+                        counter++;
+                      });
+                    },
+                  ),
+                  FloatingActionButton(
+                    child: const Icon(Icons.abc_rounded),
+                    onPressed: () {
+                      setState(() {
+                        counter--;
+                      });
+                    },
+                  ),
+                ],
+              )
             ],
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add),
-          onPressed: () {
-            counter++;
-            print("$counter");
-          },
         ),
       ),
     );
